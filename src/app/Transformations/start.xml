@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- <?xml-stylesheet type="text/xsl" href="CombineChannels.xsl"?> -->
+<root>
+  <channel1>tv6.se</channel1>
+  <channel2>kunskapskanalen.svt.se</channel2>
+  <channel3>cartoonnetwork.se</channel3>
+</root>
