@@ -6,6 +6,9 @@ class Router {
 
   protected $handlers = [];
 
+  /**
+   * Run a request through a matching handler.
+   */
   public function run()
   {
     $method = $_SERVER['REQUEST_METHOD'];
@@ -18,7 +21,10 @@ class Router {
     }
   }
 
-  public function get($url, $handler)
+  /**
+   * Register a handler for a GET request.
+   */
+  public function get($url, callable $handler)
   {
     $this->handlers['GET'][ltrim($url, '/')] = $handler;
   }
