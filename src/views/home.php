@@ -22,7 +22,7 @@
         <div class="flex flex-column align-center flex-1 bg-white shadow mx-7 order-1 py-2">
           <button class="b-none width-11 shadow bg-1-light rounded-2 color-white p-2 m-2 pointer text-4" formaction="/xml" formtarget="_blank">Visa som XML</button>
           <button class="b-none width-11 shadow bg-yes rounded-2 color-white p-2 m-2 pointer text-4" formaction="/xhtml" formtarget="_blank">Visa som XHTML</button>
-          <button class="b-none width-11 shadow bg-2 rounded-2 color-white p-2 m-2 pointer text-4" formaction="/pdf" formtarget="_blank">Visa som PDF</button>
+          <button class="b-none width-11 shadow bg-2 rounded-2 color-white p-2 m-2 pointer text-4" formaction="/TV-guide.pdf" formtarget="_blank">Visa som PDF</button>
         </div>
         <div class="flex-1 bg-white shadow mx-7 p:mb-3">
           <div class="bb-1-gray p-1 flex justify-between align-center">
@@ -43,7 +43,6 @@
                   <input class="m-3" name="channels[]" value="<?= $channel ?>" type="checkbox">
                 </label>
               </li>
-              <!-- http://chanlogos.xmltv.se/<?= $channel ?>.png -->
             <?php endforeach; ?>
           </ul>
         </div>

@@ -18,6 +18,8 @@ services:
     links:
       # Use nginx as a proxy for xmltv in order to use the DTD from Sourceforge.
       - nginx:xmltv.xmltv.se
-  # fop:
-  #   restart: always
-  #   image: jsreportonline/fop-pdf:3
+  fop:
+    restart: always
+    image: jsreportonline/fop-pdf:3
+    environment:
+      - temp=/tmp

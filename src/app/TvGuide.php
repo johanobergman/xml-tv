@@ -11,7 +11,7 @@ class TvGuide {
 
   public function __construct($xml = null)
   {
-    $this->xml = $xml ?: new XmlProcessor(SRC_PATH);
+    $this->xml = $xml ?: new XmlProcessor;
   }
 
   /**
@@ -77,8 +77,33 @@ class TvGuide {
    */
   public function asPdf($date, $channels)
   {
-    // return 'Apache FOP: ' . file_get_contents('http://fop:6000');
-    return '';
+    $base = $this->inXml($date, $channels);
+
+    $fo = $this->xml->xslt(
+      $base,
+      file_get_contents(SRC_PATH . '/transformations/guide-to-fo.xsl')
+    );
+
+    return $this->post('http://fop:6000', compact('fo'))['result'];
+  }
+
+  /**
+   * Send a JSON POST request.
+   */
+  protected function post($url, $data)
+  {
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+
+    $result = curl_exec($ch);
+    $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    return compact('result', 'status');
   }
 
 }

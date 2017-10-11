@@ -5,20 +5,13 @@ require 'helpers.php';
 use App\Router;
 use App\TvGuide;
 
-// Hardcode some nice and safe channels :)
-$channels = [
-  'tv6.se',
-  'kunskapskanalen.svt.se',
-  'cartoonnetwork.se',
-];
-
 $today = date('Y-m-d');
 
 $app = new Router;
 
-$app->get('/', function() {
+$app->get('/', function() use ($today) {
   return view('home', [
-    'today' => date('Y-m-d'),
+    'today' => $today,
     'channels' => (new TvGuide)->channels(),
   ]);
 });
@@ -31,8 +24,8 @@ $app->get('/xhtml', function() use ($today) {
   return (new TvGuide)->inXhtml($today, $_GET['channels'] ?? []);
 });
 
-$app->get('/pdf', function() use ($today) {
-  return (new TvGuide)->asPdf($today, $_GET['channels'] ?? []);
+$app->get('/TV-guide.pdf', function() use ($today) {
+  return pdf((new TvGuide)->asPdf($today, $_GET['channels'] ?? []));
 });
 
 $app->run();

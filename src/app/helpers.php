@@ -15,6 +15,20 @@ function view($view, $data = []) {
  */
 function xml($data) {
   header('Content-Type: text/xml');
+
+  return $data;
+}
+
+/**
+ * Return a PDF response with the appropriate headers.
+ */
+function pdf($data) {
+  header('Content-Type: application/pdf');
+  header('Content-Disposition: inline; filename="TV-guide.pdf"');
+  header('Content-Transfer-Encoding: binary');
+  header('Content-Length: ' . strlen($data));
+  header('Accept-Ranges: bytes');
+
   return $data;
 }
 
