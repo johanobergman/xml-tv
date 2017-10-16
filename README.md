@@ -8,3 +8,7 @@ To stop, run `docker-compose down`.
 - generate start-xml in php
 - insert doctype using text in xquery
 - xmlns xpath //*:channel
+
+## TODO
+
+- cron to clear cache

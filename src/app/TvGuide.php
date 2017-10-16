@@ -68,7 +68,8 @@ class TvGuide {
 
     return $this->xml->xQuery(
       $base,
-      file_get_contents(SRC_PATH . '/transformations/guide-to-xhtml.xq')
+      file_get_contents(SRC_PATH . '/transformations/guide-to-xhtml.xq'),
+      compact('date')
     );
   }
 
