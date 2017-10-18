@@ -45,7 +45,7 @@ class TvGuide {
     // We can't cache channels individually since they are loaded in XSLT,
     // so let's cache them in groups instead. A custom XSLT resolver would
     // be ideal, but there's very little documentation on Saxon's PHP implementation.
-    return cache(implode(',', $channels), 60 * 24, function() use ($date, $channels) {
+    return cache($date . implode(',', $channels), 60 * 24, function() use ($date, $channels) {
       // Calculate the urls for the given channels.
       $channels = array_map(function($channel) use ($date) {
         return "http://xmltv.xmltv.se/{$channel}_$date.xml.gz";
