@@ -1,0 +1,12 @@
+{
+    "name": "johanbergman/css-hack",
+    "require": {
+        "mexitek/phpcolors": "^0.4.0"
+    },
+    "authors": [
+        {
+            "name": "Johan Bergman",
+            "email": "johan.bergman1@gmail.com"
+        }
+    ]
+}
