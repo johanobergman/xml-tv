@@ -82,7 +82,8 @@ class TvGuide {
 
     $fo = $this->xml->xslt(
       $base,
-      file_get_contents(SRC_PATH . '/transformations/guide-to-fo.xsl')
+      file_get_contents(SRC_PATH . '/transformations/guide-to-fo.xsl'),
+      compact('date')
     );
 
     return $this->post('http://fop:6000', compact('fo'))['result'];

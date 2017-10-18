@@ -39,7 +39,7 @@ declare option saxon:output "doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtm
             {
               for $show in $channel/*:show
               return <li class="show block pointer px-2 py-.9 bg-gray-light-hover" onclick="toggleDescription(event)">
-                <strong class="mr-1">{data($show/*:start)}</strong>{data($show/*:title)}
+                <strong class="mr-.9">{data($show/*:start)}</strong>{data($show/*:title)}
                 <p class="description hidden text-1">{data($show/*:description)}</p>
               </li>
             }
