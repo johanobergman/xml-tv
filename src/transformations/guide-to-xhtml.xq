@@ -18,9 +18,7 @@ declare option saxon:output "doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtm
   <div class="shadow relative">
     <div class="container-1 flex">
       <a href="/" class="py-1 px-2 bg-gray-light-hover text-2">TV-guiden</a>
-      <a href="/" class="py-1 px-2 bb-2-2 bg-gray-light-hover text-2 ml-auto">Idag</a>
-      <a href="/" class="py-1 px-2 bg-gray-light-hover text-2">{$date}</a>
-      <a href="/" class="py-1 px-2 bg-gray-light-hover text-2">Onsdag</a>
+      <h2 class="py-1 px-2 bb-2-2 text-2 ml-auto">{$date}</h2>
     </div>
   </div>
   <div class="bg-gray-light py-5">
@@ -40,8 +38,9 @@ declare option saxon:output "doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtm
           <ol class="list-none">
             {
               for $show in $channel/*:show
-              return <li class="px-2 py-1">
-                {data($show/*:title)}
+              return <li class="show block pointer px-2 py-.9 bg-gray-light-hover" onclick="toggleDescription(event)">
+                <strong class="mr-1">{data($show/*:start)}</strong>{data($show/*:title)}
+                <p class="description hidden text-1">{data($show/*:description)}</p>
               </li>
             }
           </ol>
@@ -49,5 +48,14 @@ declare option saxon:output "doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtm
       }
     </ul>
   </div>
+  <script type="text/javascript">
+  /*<!-- Make sure script is not parsed as xquery. */
+  function toggleDescription(event) {
+    let description = event.currentTarget.querySelector('.description')
+    document.querySelectorAll('.description').forEach(e => e !== description && e.classList.add('hidden'))
+    description.classList.toggle('hidden')
+  }
+  /*-->*/
+  </script>
 </body>
 </html>
