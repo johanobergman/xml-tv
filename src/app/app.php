@@ -5,27 +5,27 @@ require 'helpers.php';
 use App\Router;
 use App\TvGuide;
 
-$today = date('Y-m-d');
+$date = $_GET['date'] ?? date('Y-m-d');
 
 $app = new Router;
 
-$app->get('/', function() use ($today) {
+$app->get('/', function() use ($date) {
   return view('home', [
-    'today' => $today,
+    'date' => $date,
     'channels' => (new TvGuide)->channels(),
   ]);
 });
 
-$app->get('/xml', function() use ($today) {
-  return xml((new TvGuide)->inXml($today, $_GET['channels'] ?? []));
+$app->get('/xml', function() use ($date) {
+  return xml((new TvGuide)->inXml($date, $_GET['channels'] ?? []));
 });
 
-$app->get('/xhtml', function() use ($today) {
-  return (new TvGuide)->inXhtml($today, $_GET['channels'] ?? []);
+$app->get('/xhtml', function() use ($date) {
+  return (new TvGuide)->inXhtml($date, $_GET['channels'] ?? []);
 });
 
-$app->get('/TV-guide.pdf', function() use ($today) {
-  return pdf((new TvGuide)->asPdf($today, $_GET['channels'] ?? []));
+$app->get('/TV-guide.pdf', function() use ($date) {
+  return pdf((new TvGuide)->asPdf($date, $_GET['channels'] ?? []));
 });
 
 $app->run();
