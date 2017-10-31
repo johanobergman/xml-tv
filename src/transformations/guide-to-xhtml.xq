@@ -31,7 +31,6 @@ declare option saxon:output "doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtm
               style="line-height: 1.2;"
               class="width-5 height-5 rounded-2 ml-3 text-5"
               src="http://chanlogos.xmltv.se/{data($channel/*:name)}.png"
-              alt="📺"
             />
             <h2 class="flex-1 px-2 py-1 bold">{data($channel/*:name)}</h2>
           </div>

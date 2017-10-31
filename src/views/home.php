@@ -45,11 +45,12 @@
         <div class="flex-1 bg-white shadow mx-7 mb-5">
           <div class="bb-1-gray p-1 flex justify-between align-center">
             <h2 class="text-4 bold">Välj kanaler</h2>
+            <input class="flex-1 mx-1 fullwidth rounded-2 b-2-gray text-2 p-1" placeholder="Sök" oninput="filterChannels(event)">
             <button class="b-none shadow bg-1-light rounded-2 color-white py-.9 px-1 pointer text-2" onclick="resetCheckboxes(event)">Rensa val</button>
           </div>
           <ul class="scroll-y" style="height: 50vh;">
             <?php foreach ($channels as $channel) : ?>
-              <li>
+              <li class="channel-item">
                 <label class="bb-1-gray flex align-center">
                   <img
                     style="line-height: 1.2;"
@@ -57,7 +58,7 @@
                     src="http://chanlogos.xmltv.se/<?= $channel ?>.png"
                     alt="📺"
                   >
-                  <div class="m-3 lh-1 flex-1"><?= $channel ?></div>
+                  <div class="channel-name m-3 lh-1 flex-1"><?= $channel ?></div>
                   <input class="m-3" name="channels[]" value="<?= $channel ?>" type="checkbox">
                 </label>
               </li>
@@ -75,6 +76,16 @@
   function setToday(event) {
     event.preventDefault()
     document.getElementById('date').value = new Date().toISOString().slice(0,10)
+  }
+  function filterChannels(event) {
+    // event.preventDefault();
+    document.querySelectorAll('.channel-item').forEach(channel => {
+      if (channel.querySelector('.channel-name').textContent.indexOf(event.target.value) !== -1) {
+        channel.classList.remove('hidden')
+      } else {
+        channel.classList.add('hidden')
+      }
+    })
   }
   </script>
 </body>
